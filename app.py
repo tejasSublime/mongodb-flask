@@ -1,6 +1,7 @@
 from flask import Flask , jsonify , request
 from connect import connectiontest; 
-
+from Whatpy import  webdmclose 
+import datetime
 
 app = Flask(__name__)
 
@@ -102,6 +103,15 @@ def getMovieData():
             "lastupdated": data["lastupdated"]
             })
         return jsonify(movieList)
+    
+@app.route("/sendwamsg")
+def sendwa():
+    current_time = datetime.datetime.now()
+    print(current_time)
+    # sendwhatmsg_instantly("+919819535276", "Message-2", current_time.hour, current_time.minute+1)
+    webdmclose("+919819535276", "Message-2");
+    return f"{current_time.hour}:{current_time.minute}"
+
 
 if __name__ == "__main__":
     app.run(debug=True , host="0.0.0.0")
