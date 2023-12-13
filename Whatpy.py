@@ -4,9 +4,9 @@ import time #imports time for delays
 
 def webdmclose(number, message): #Defines the usage of the libary and allows the input of the number and message
     webbrowser.open(f"https://web.whatsapp.com/send?phone={number}&text={message}") #Opens whatsapp web to send message with adding the variables that the user provided
-    time.sleep(12) #Waits for the link to be opened
+    time.sleep(16) #Waits for the link to be opened
     pyautogui.press('enter') #Presses enter to send the message
-    time.sleep(4) #Waits 2 seconds for wifi delay and to let the user see the message
+    time.sleep(6) #Waits 2 seconds for wifi delay and to let the user see the message
     pyautogui.hotkey('ctrl', 'w') #Closes the whatsapp web tab
 
 
