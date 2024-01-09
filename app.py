@@ -5,9 +5,12 @@ import datetime
 import random
 from bson.objectid import ObjectId
 
+import asyncio
+import websockets
+
 app = Flask(__name__)
 
-client = connectiontest();
+client = connectiontest()
 
 @app.route("/hello", methods=["GET", "POST"  , "PUT" , "DELETE"] )
 def hello():
@@ -202,8 +205,25 @@ def category():
         return updateData
       
     
+    
+# async def connect(websocket, path):
+#     name = await websocket.recv()
+#     print(f"< {name}")
+#     greeting = f"Hello {name}!"
+#     await websocket.send(greeting)
+#     print(f"> {greeting}")
+#     print(f"WebSocket connection established with {name}")  
+async def demo():
+    server = await websockets.serve("localhost", 8765)
+    print("WebSocket server started on ws://localhost:8765")
+    await server.wait_closed()
+    # async with websockets.serve(connect,"192.168.0.141", 8765):
+    #     print("WebSocket server started on ws://localhost:8765")
+    #     await asyncio.Future()  # Run forever  
 
 if __name__ == "__main__":
+    loop = asyncio.get_event_loop()
+    websocket_task = loop.create_task(demo())
     app.run(debug=True , host="0.0.0.0")
 
 
